@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reef Point – Guide tactique EVA After-H Battle Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bp:#15314d; --bp2:#1c3e60; --line:#3b6488; --ink:#e7eef4; --muted:#a9bfd2;
+  --jaune:#f2b33d; --bleu:#7fc8e8; --alerte:#e8664f; --tp:#3fd68a;
+  --head:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bp);color:var(--ink);font:400 17px/1.6 var(--body);
+  background-image:linear-gradient(var(--bp2) 1px,transparent 1px),linear-gradient(90deg,var(--bp2) 1px,transparent 1px);
+  background-size:32px 32px}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 20px 64px}
+header h1{font:700 clamp(56px,11vw,120px)/.9 var(--head);margin:0;letter-spacing:.02em}
+header p{max-width:62ch;color:var(--muted);margin:14px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;margin:22px 0 0;padding:0;list-style:none;font-family:var(--head);font-size:19px}
+.facts b{color:var(--jaune);font-weight:600}
+.plan{margin:34px 0 10px;border:1.5px solid var(--line);background:rgba(21,49,77,.9);padding:16px}
+.plan-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.plan-head h2{font:600 24px/1.1 var(--head);margin:0}
+.modes{display:flex;flex-wrap:wrap;gap:6px}
+.modes button{font:600 16px var(--head);background:transparent;color:var(--ink);border:1.5px solid var(--line);padding:6px 12px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--jaune);border-color:var(--jaune);color:#15314d}
+.svgbox{overflow-x:auto;margin-top:12px}
+svg{display:block;width:100%;min-width:620px;height:auto}
+.sv{font-family:var(--head)}
+.lab text{paint-order:stroke;stroke:#15314d;stroke-width:4px;stroke-linejoin:round}
+.note{color:var(--muted);font-size:14px;margin:8px 0 0}
+#modeTxt{margin:10px 0 0;max-width:75ch}
+.tok{transition:transform .6s ease}
+@media (prefers-reduced-motion:reduce){.tok{transition:none}}
+[role=tablist]{display:flex;flex-wrap:wrap;margin-top:40px;border-bottom:1.5px solid var(--line)}
+[role=tab]{font:600 19px var(--head);background:none;border:0;color:var(--muted);padding:10px 16px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+[role=tab][aria-selected="true"]{color:var(--ink);border-bottom-color:var(--jaune)}
+button:focus-visible{outline:2px solid var(--bleu);outline-offset:2px}
+[role=tabpanel]{padding:26px 0 0}
+[role=tabpanel][hidden]{display:none}
+h3{font:600 26px/1.15 var(--head);margin:28px 0 8px}
+h3:first-child{margin-top:0}
+h4{font:600 20px/1.2 var(--head);margin:18px 0 4px;color:var(--jaune)}
+p,li{max-width:72ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.role{border-left:3px solid var(--jaune);padding:4px 0 4px 16px}
+.role.b{border-color:var(--bleu)} .role.r{border-color:var(--alerte)} .role.g{border-color:var(--tp)}
+.role .w{font-family:var(--head);color:var(--muted);font-size:16px}
+ol.phases{list-style:none;padding:0;margin:0;counter-reset:ph}
+ol.phases>li{counter-increment:ph;position:relative;padding:0 0 22px 64px;max-width:none}
+ol.phases>li::before{content:counter(ph);position:absolute;left:0;top:-4px;font:700 44px/1 var(--head);color:var(--jaune)}
+ol.phases h4{margin-top:0;color:var(--ink)}
+.t{color:var(--muted);font-family:var(--head)}
+.warn{border:1.5px solid var(--alerte);padding:12px 16px;margin:18px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 17px var(--head);color:var(--muted)}
+ul.check{padding-left:20px}
+footer{margin-top:48px;color:var(--muted);font-size:14px}
+footer a{color:var(--bleu)}
+.back{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:8px 14px;font:600 18px var(--head);color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:rgba(21,49,77,.9)}
+.back:hover,.back:focus-visible{border-color:var(--jaune);color:var(--jaune)}
+.back:focus-visible{outline:2px solid var(--bleu);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">&larr; Toutes les maps</a>
+
+
+<header>
+  <h1>Reef Point</h1>
+  <p>Un seul point, A, au centre. Autour, trois portes-ponts qui changent la carte en plein match : ouvertes, on passe au sol ; fermées, ce sont les passerelles en hauteur qui s'ouvrent. Sur Reef Point, on se bat pour A, mais c'est l'équipe qui contrôle les consoles qui choisit où se joue le combat.</p>
+  <ul class="facts">
+    <li><b>Mode</b> Domination 4v4</li>
+    <li><b>Point</b> A central</li>
+    <li><b>Mécanique</b> 3 portes-ponts pilotées par 2 consoles</li>
+    <li><b>Armes clés</b> AR et LMG en hauteur, SMG au sol</li>
+  </ul>
+</header>
+
+<section class="plan" aria-label="Carte tactique interactive">
+  <div class="plan-head">
+    <h2>Placement de l'équipe jaune</h2>
+    <div class="modes" id="modes">
+      <button type="button" data-m="starter" aria-pressed="true">Starter</button>
+      <button type="button" data-m="tenir">Tenir A</button>
+      <button type="button" data-m="recapa">Recap A</button>
+    </div>
+  </div>
+  <div class="svgbox">
+  <svg viewBox="0 0 934 475" role="img" aria-labelledby="svgT">
+    <title id="svgT">Minimap de Reef Point avec le placement de l'équipe jaune</title>
+    <image href="data:image/webp;base64,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" x="0" y="0" width="934" height="475"/>
+    <g class="sv lab" font-size="15" fill="#e7eef4" text-anchor="middle">
+      <text x="55" y="395" fill="#15314d" style="stroke:#f2b33d">Spawn J</text>
+      <text x="847" y="395" fill="#15314d" style="stroke:#7fc8e8">Spawn B</text>
+      <text x="450" y="38" font-size="13">Push Back</text>
+      <text x="450" y="452" font-size="13">Couloir Bunker</text>
+      <text x="451" y="210" font-size="12">Porte-pont C</text>
+      <text x="262" y="175" font-size="12">Porte-pont O</text>
+      <text x="640" y="175" font-size="12">Porte-pont E</text>
+      <text x="97" y="228" font-size="12">Hauteur O</text>
+      <text x="805" y="228" font-size="12">Hauteur E</text>
+      <text x="305" y="345" font-size="12">Vent Bunker O</text>
+      <text x="598" y="345" font-size="12">Vent Bunker E</text>
+    </g>
+    <g class="sv" font-weight="700" font-size="14" text-anchor="middle">
+      <g class="tok" data-r="anc"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">GRE</text></g>
+      <g class="tok" data-r="e1"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">VIN</text></g>
+      <g class="tok" data-r="e2"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">ADE</text></g>
+      <g class="tok" data-r="flex"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">SJ</text></g>
+    </g>
+  </svg>
+  </div>
+  <p id="modeTxt" aria-live="polite"></p>
+  <p class="note">Vue de dessus de Reef Point. Gris clair : sol. Blanc : murs. Zones noires : passerelles en hauteur. Vert et rose : portes-ponts. Points rouge et vert : consoles. Les libellés sont nos callouts, à confirmer en jeu.</p>
+</section>
+
+<div role="tablist" aria-label="Sections du guide">
+  <button role="tab" id="t1" aria-controls="p1" aria-selected="true">Vue d'ensemble</button>
+  <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Positionnement</button>
+  <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Phases de jeu</button>
+  <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Stratégies d'équipe</button>
+  <button role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">Tactiques avancées</button>
+</div>
+
+<section role="tabpanel" id="p1" aria-labelledby="t1">
+  <h3>Comment la map est construite</h3>
+  <p>Reef Point est symétrique gauche-droite. L'équipe jaune apparaît en bas à gauche, l'équipe bleue en bas à droite. A est au centre, entouré de murs en L qui servent de couverts.</p>
+  <p>Au-dessus de A, deux étages se superposent. Au sol, les vents Bunker O et E mènent vers le point. En hauteur, quatre passerelles relient les côtés au centre, séparées par trois portes-ponts : O, C (au-dessus de A) et E. On monte en hauteur par les hauteurs O et E.</p>
+  <p>Deux consoles pilotent les portes-ponts : la console du Push Back, en haut au centre, et la console du couloir Bunker, en bas au centre, juste sous A. Elles sont à égale distance des deux spawns.</p>
+
+  <h3>Le principe à retenir</h3>
+  <p>A est le seul point : c'est lui qui fait gagner. Les consoles ne marquent rien, elles décident seulement si le combat se joue en hauteur ou au sol. On prend une console pour mettre la carte dans la configuration qui arrange l'équipe, jamais au prix de laisser A.</p>
+
+  <h3>Composition recommandée</h3>
+  <div class="grid">
+    <div class="role"><h4>Appui</h4><p class="w">VIN</p><p>Couvre depuis le bloc ouest au starter avec le LMG, puis tient le sud de A, entre le point et le couloir Bunker. Se place derrière GRE pour la revenge au Recap A.</p></div>
+    <div class="role"><h4>Entry</h4><p class="w">GRE</p><p>Ouvre avec son shield : contrôle le couloir Bunker au starter, puis tient le point A derrière le mur. Prend les duels courts.</p></div>
+    <div class="role b"><h4>Support</h4><p class="w">ADE</p><p>Suit GRE dans le couloir Bunker au starter, puis se place derrière le L ouest, au vent Bunker O. Pose le sonar sur A et venge GRE.</p></div>
+    <div class="role r"><h4>Flex</h4><p class="w">SJ</p><p>Monte par la hauteur O et tient la passerelle ouest, avec vue sur A. Annonce l'état des portes. Revient par le haut au Recap A.</p></div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+  <h3>Autour de A</h3>
+  <p>Les murs en L de chaque côté de A sont les seuls couverts proches du point. Le joueur sur le point reste collé à l'un d'eux, le support se place derrière l'autre face, pour que les deux ne soient jamais pris dans le même angle.</p>
+  <p>La passerelle au-dessus de A, avec la porte-pont C, domine tout le point. L'équipe qui la tient voit A en entier. Quand elle est accessible, c'est la meilleure place de la map pour tirer sur le point.</p>
+
+  <h3>Hauteur ou sol</h3>
+  <p>Portes ouvertes, le sol est ouvert et les passerelles sont coupées : le combat se rapproche, favorable au SMG et au shield. Portes fermées, les passerelles sont reliées et le sol se ferme : les lignes de vue s'allongent, favorables à l'AR et au LMG. Adaptez les placements à chaque changement.</p>
+
+  <h3>Callouts proposés</h3>
+  <p class="t">Basés sur la vue de dessus. À adapter aux noms de votre équipe.</p>
+  <div class="table"><table>
+    <thead><tr><th>Callout</th><th>Zone</th></tr></thead>
+    <tbody>
+      <tr><td>Push Back / Couloir Bunker</td><td>Consoles en haut (Back) et en bas au centre (Bunker)</td></tr>
+      <tr><td>Porte-pont O / C / E</td><td>Les trois portes entre les passerelles, C au-dessus de A</td></tr>
+      <tr><td>Passerelle O / E</td><td>Passerelles en hauteur, de chaque côté du centre</td></tr>
+      <tr><td>Hauteur O / Hauteur E</td><td>Montée vers la hauteur, près de chaque spawn</td></tr>
+      <tr><td>Vent Bunker O / Vent Bunker E</td><td>Accès au sol vers A, entre les murs en Y</td></tr>
+      <tr><td>L O / L E</td><td>Murs en L de chaque côté de A</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+  <ol class="phases">
+    <li><h4>Starter</h4><p class="t">Du spawn au premier contact</p>
+      <p>SJ monte par la hauteur O et prend la passerelle ouest pour couvrir l'arrivée sur A. VIN avance côté ouest, à couvert derrière le bloc, avec son LMG. GRE et ADE passent par le bas jusqu'au couloir Bunker : GRE met son shield pour contrôler le couloir, ADE juste derrière lui.</p></li>
+    <li><h4>Premier combat sur A</h4><p class="t">Les 20 à 30 premières secondes</p>
+      <p>Gagnez le premier combat ensemble, sans courir. GRE avance avec son shield, ADE le suit pour le venger, VIN couvre depuis le bloc ouest et SJ tire depuis la passerelle. SJ annonce l'état des portes : c'est cette info qui dit à l'équipe si le combat se joue en hauteur ou au sol.</p></li>
+    <li><h4>Stabilisation</h4><p class="t">A tenu</p>
+      <p>Une fois A tenu, installez-vous en Tenir A : GRE sur le point derrière le mur, ADE derrière le L ouest, VIN au sud de A, SJ sur la passerelle ouest. Personne ne quitte sa zone sans l'annoncer.</p></li>
+    <li><h4>Changement de portes</h4><p class="t">Quand l'adversaire change la carte</p>
+      <p>Annoncez-le tout de suite et adaptez vos placements : combat rapproché au sol si les portes sont ouvertes, lignes de vue longues en hauteur si elles sont fermées.</p></li>
+    <li><h4>Fin de partie</h4><p class="t">Gestion du score</p>
+      <p>Si vous menez, restez à quatre autour de A et ne jouez plus les consoles. Si vous êtes derrière, prenez une console pour imposer la configuration qui vous favorise avant de recap A.</p></li>
+  </ol>
+</section>
+
+<section role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+  <h3>Plan standard : tenir A à quatre</h3>
+  <p>Le plan par défaut. Dès le starter, les quatre joueurs se placent autour de A : GRE et ADE par le couloir Bunker, VIN derrière le bloc ouest, SJ sur la passerelle ouest. A est le seul point qui marque : on ne laisse jamais plus d'un joueur hors du centre.</p>
+
+  <h3>Tenir A</h3>
+  <p>GRE reste sur le point, derrière le mur, avec son shield. ADE se place derrière le L ouest, au vent Bunker O, pour le venger et relancer le sonar. SJ tient la passerelle ouest, en hauteur. VIN se place au sud du point, entre A et le couloir Bunker.</p>
+
+
+  <h3>Recap A</h3>
+  <p>Quand les bleus ont repris A, l'équipe attaque sur trois angles. ADE lance le sonar depuis le vent Bunker O. GRE ouvre par le couloir Bunker avec son shield, VIN juste derrière lui pour la revenge. SJ arrive par le haut, côté ouest. Tout le monde entre en même temps.</p>
+
+  <div class="warn"><strong>Erreur fréquente :</strong> envoyer deux joueurs ou plus sur les consoles. A reste à deux contre quatre et l'adversaire marque pendant que vous changez les portes.</div>
+</section>
+
+<section role="tabpanel" id="p5" aria-labelledby="t5" hidden>
+  <h3>L'état des portes, c'est l'info n°1</h3>
+  <p>Sur Reef Point, savoir si les portes sont ouvertes ou fermées compte autant que la position des bleus. SJ annonce l'état à chaque changement, avec un mot simple : « haut » ou « sol ».</p>
+
+  <h3>Changer les portes au bon moment</h3>
+  <p>Changez la configuration juste avant un combat, pas pendant. Un bleu en train de traverser une passerelle qui se coupe se retrouve bloqué ou exposé.</p>
+
+  <h3>Trades et discipline</h3>
+  <p>Chaque engagement sur A se fait à deux, avec un joueur prêt à trade dans la seconde. Personne ne va seul sur une console quand A est contesté.</p>
+
+  <h3>À mesurer en entraînement</h3>
+  <p>Ces points ne se voient pas sur la carte. Notez-les une fois et intégrez-les dans ce guide.</p>
+  <ul class="check">
+    <li>Quelle console contrôle quelles portes, et en combien de temps</li>
+    <li>État des portes au début de la manche</li>
+    <li>Rôle exact des hauteurs O et E, et des zones grisées des vents Bunker</li>
+    <li>Lignes de vue depuis chaque passerelle sur A</li>
+    <li>Temps de trajet spawn vers A, spawn vers chaque console</li>
+  </ul>
+</section>
+
+<footer>
+  Mécanique des portes-ponts et des consoles : <a href="https://blog.eva.gg/saison-8-reef-point" target="_blank" rel="noopener">Blog EVA, Saison 8</a> et <a href="https://blog.eva.gg/saison-8-5-strat%C3%A9gies-pour-dominer-reef-point" target="_blank" rel="noopener">5 stratégies pour dominer Reef Point</a>. Plans de jeu et placements : propositions à valider en entraînement.
+</footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on);
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+    t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight')select(tabs[(i+1)%tabs.length]);
+      if(e.key==='ArrowLeft')select(tabs[(i-1+tabs.length)%tabs.length]);
+    });
+  });
+  var P={
+    starter:{anc:[376,443],e1:[217,211],e2:[340,440],flex:[134,125],
+      t:"Starter : SJ monte par la hauteur O et prend la passerelle ouest. VIN avance côté ouest, à couvert derrière le bloc, avec son LMG. ADE et GRE passent par le bas jusqu'au couloir Bunker : GRE met son shield pour contrôler le couloir, ADE juste derrière."},
+    tenir:{anc:[433,263],e1:[500,390],e2:[345,300],flex:[134,125],
+      t:"Tenir A : GRE sur le point A derrière le mur, avec son shield. ADE derrière le L ouest, au vent Bunker O, pour venger et relancer le sonar. SJ sur la passerelle ouest, en hauteur. VIN au sud, entre A et le couloir Bunker."},
+    recapa:{anc:[354,438],e1:[315,434],e2:[277,310],flex:[216,203],
+      t:"Recap A : ADE lance le sonar depuis le vent Bunker O. GRE ouvre par le couloir Bunker avec son shield, VIN juste derrière lui pour la revenge. SJ arrive par le haut, côté ouest. Tout le monde entre en même temps."}
+  };
+  var toks=document.querySelectorAll('.tok'), txt=document.getElementById('modeTxt');
+  var btns=[].slice.call(document.querySelectorAll('#modes button'));
+  function show(m){
+    var p=P[m];
+    toks.forEach(function(g){var c=p[g.dataset.r];g.style.transform='translate('+c[0]+'px,'+c[1]+'px)';});
+    txt.textContent=p.t;
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===m)});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.m)})});
+  show('starter');
+})();
+</script>
+</body>
+</html>

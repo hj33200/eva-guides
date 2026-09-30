@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Cliff – Guide tactique EVA After-H Battle Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bp:#15314d; --bp2:#1c3e60; --line:#3b6488; --ink:#e7eef4; --muted:#a9bfd2;
+  --jaune:#f2b33d; --bleu:#7fc8e8; --alerte:#e8664f; --tp:#3fd68a;
+  --head:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bp);color:var(--ink);font:400 17px/1.6 var(--body);
+  background-image:linear-gradient(var(--bp2) 1px,transparent 1px),linear-gradient(90deg,var(--bp2) 1px,transparent 1px);
+  background-size:32px 32px}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 20px 64px}
+header h1{font:700 clamp(56px,11vw,120px)/.9 var(--head);margin:0;letter-spacing:.02em}
+header p{max-width:62ch;color:var(--muted);margin:14px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;margin:22px 0 0;padding:0;list-style:none;font-family:var(--head);font-size:19px}
+.facts b{color:var(--jaune);font-weight:600}
+.plan{margin:34px 0 10px;border:1.5px solid var(--line);background:rgba(21,49,77,.9);padding:16px}
+.plan-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.plan-head h2{font:600 24px/1.1 var(--head);margin:0}
+.modes{display:flex;flex-wrap:wrap;gap:6px}
+.modes button{font:600 16px var(--head);background:transparent;color:var(--ink);border:1.5px solid var(--line);padding:6px 12px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--jaune);border-color:var(--jaune);color:#15314d}
+.svgbox{overflow-x:auto;margin-top:12px}
+svg{display:block;width:100%;min-width:620px;height:auto}
+.sv{font-family:var(--head)}
+.lab text{paint-order:stroke;stroke:#15314d;stroke-width:4px;stroke-linejoin:round}
+.note{color:var(--muted);font-size:14px;margin:8px 0 0}
+#modeTxt{margin:10px 0 0;max-width:75ch}
+.tok{transition:transform .6s ease}
+@media (prefers-reduced-motion:reduce){.tok{transition:none}}
+[role=tablist]{display:flex;flex-wrap:wrap;margin-top:40px;border-bottom:1.5px solid var(--line)}
+[role=tab]{font:600 19px var(--head);background:none;border:0;color:var(--muted);padding:10px 16px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+[role=tab][aria-selected="true"]{color:var(--ink);border-bottom-color:var(--jaune)}
+button:focus-visible{outline:2px solid var(--bleu);outline-offset:2px}
+[role=tabpanel]{padding:26px 0 0}
+[role=tabpanel][hidden]{display:none}
+h3{font:600 26px/1.15 var(--head);margin:28px 0 8px}
+h3:first-child{margin-top:0}
+h4{font:600 20px/1.2 var(--head);margin:18px 0 4px;color:var(--jaune)}
+p,li{max-width:72ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.role{border-left:3px solid var(--jaune);padding:4px 0 4px 16px}
+.role.b{border-color:var(--bleu)} .role.r{border-color:var(--alerte)} .role.g{border-color:var(--tp)}
+.role .w{font-family:var(--head);color:var(--muted);font-size:16px}
+ol.phases{list-style:none;padding:0;margin:0;counter-reset:ph}
+ol.phases>li{counter-increment:ph;position:relative;padding:0 0 22px 64px;max-width:none}
+ol.phases>li::before{content:counter(ph);position:absolute;left:0;top:-4px;font:700 44px/1 var(--head);color:var(--jaune)}
+ol.phases h4{margin-top:0;color:var(--ink)}
+.t{color:var(--muted);font-family:var(--head)}
+.warn{border:1.5px solid var(--alerte);padding:12px 16px;margin:18px 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:16px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 17px var(--head);color:var(--muted)}
+ul.check{padding-left:20px}
+footer{margin-top:48px;color:var(--muted);font-size:14px}
+footer a{color:var(--bleu)}
+.back{display:inline-flex;align-items:center;gap:8px;margin:0 0 22px;padding:8px 14px;font:600 18px var(--head);color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:rgba(21,49,77,.9)}
+.back:hover,.back:focus-visible{border-color:var(--jaune);color:var(--jaune)}
+.back:focus-visible{outline:2px solid var(--bleu);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">&larr; Toutes les maps</a>
+
+
+<header>
+  <h1>The Cliff</h1>
+  <p>Un seul point, A (le Bunker), en haut au centre. Les deux équipes apparaissent sur les côtés et se retrouvent autour d'un losange central, avec des murs qui découpent le bas de la carte. Sur chaque hauteur, en haut à gauche et à droite, deux marqueurs à flèches vertes dont le rôle reste à confirmer en jeu. Ce guide est une première version : les placements sont des propositions à ajuster.</p>
+  <ul class="facts">
+    <li><b>Point</b> A (Bunker), unique, en haut au centre</li>
+    <li><b>Spawns</b> J à gauche, B à droite</li>
+    <li><b>Centre</b> Losange entre les deux camps</li>
+    <li><b>À confirmer</b> Rôle des flèches vertes des hauteurs</li>
+  </ul>
+</header>
+
+<section class="plan" aria-label="Carte tactique interactive">
+  <div class="plan-head">
+    <h2>Placement de l'équipe jaune</h2>
+    <div class="modes" id="modes">
+      <button type="button" data-m="starter" aria-pressed="true">Starter</button>
+      <button type="button" data-m="tenir">Tenir A</button>
+      <button type="button" data-m="recapa">Recap A</button>
+    </div>
+  </div>
+  <div class="svgbox">
+  <svg viewBox="0 0 934 475" role="img" aria-labelledby="svgT">
+    <title id="svgT">Minimap de The Cliff avec le placement de l'équipe jaune</title>
+    <image href="data:image/webp;base64,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" x="0" y="0" width="934" height="475"/>
+    <g class="sv lab" font-size="15" fill="#e7eef4" text-anchor="middle">
+      <text x="70" y="262" fill="#15314d" style="stroke:#f2b33d">Spawn J</text>
+      <text x="866" y="262" fill="#15314d" style="stroke:#7fc8e8">Spawn B</text>
+      <text x="135" y="205" font-size="12">Hauteur O</text>
+      <text x="800" y="205" font-size="12">Hauteur E</text>
+      <text x="246" y="288" font-size="13">Labo O</text>
+      <text x="688" y="288" font-size="13">Labo E</text>
+      <text x="468" y="462" font-size="13">Tunnel</text>
+      <text x="470" y="140" font-size="12">Bunker</text>
+      <text x="330" y="62" font-size="12">Couloir Bunker</text>
+      <text x="604" y="62" font-size="12">Couloir Bunker</text>
+      <text x="468" y="328" font-size="12">Losange</text>
+    </g>
+    <g class="ov" data-m="starter" fill="none" stroke-linecap="round" pointer-events="none">
+      <path d="M339,239 C420,232 520,224 612,203" stroke="#ff4d3d" stroke-width="4" stroke-dasharray="11 9"/>
+      <circle cx="612" cy="203" r="6" fill="#ff4d3d" stroke="none"/>
+      <path d="M347,92 C420,98 520,100 617,114" stroke="#3fd68a" stroke-width="5"/>
+      <circle cx="617" cy="114" r="7" fill="#3fd68a" stroke="none"/>
+      <path d="M378,106 L378,131" stroke="#4aa3ff" stroke-width="6"/>
+    </g>
+    <g class="ov" data-m="recapa" fill="none" stroke-linecap="round" pointer-events="none">
+      <path d="M333,327 C380,290 430,240 468,190" stroke="#ff4d3d" stroke-width="4" stroke-dasharray="11 9"/>
+      <circle cx="468" cy="190" r="6" fill="#ff4d3d" stroke="none"/>
+      <path d="M341,104 C420,108 500,118 588,113" stroke="#3fd68a" stroke-width="5"/>
+      <circle cx="588" cy="113" r="7" fill="#3fd68a" stroke="none"/>
+      <path d="M372,117 L391,132" stroke="#4aa3ff" stroke-width="6"/>
+    </g>
+    <g class="sv" font-weight="700" font-size="14" text-anchor="middle">
+      <g class="tok" data-r="anc"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">GRE</text></g>
+      <g class="tok" data-r="e1"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">VIN</text></g>
+      <g class="tok" data-r="e2"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">ADE</text></g>
+      <g class="tok" data-r="flex"><circle r="16" fill="#f2b33d" stroke="#15314d" stroke-width="2"/><text y="5" fill="#15314d">SJ</text></g>
+    </g>
+  </svg>
+  </div>
+  <p id="modeTxt" aria-live="polite"></p>
+  <p class="note">Vue de dessus de The Cliff. Blanc : murs. Carré jaune : point A. Flèches vertes : marqueurs des hauteurs, rôle à confirmer. Au Starter et au Recap A : trait rouge pointillé = sonar d'ADE, trait bleu = shield de GRE, trait vert = sticky de VIN. Les libellés sont nos callouts, à confirmer en jeu.</p>
+</section>
+
+<div role="tablist" aria-label="Sections du guide">
+  <button role="tab" id="t1" aria-controls="p1" aria-selected="true">Vue d'ensemble</button>
+  <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Positionnement</button>
+  <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Phases de jeu</button>
+  <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Stratégies d'équipe</button>
+  <button role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">Tactiques avancées</button>
+</div>
+
+<section role="tabpanel" id="p1" aria-labelledby="t1">
+  <h3>Comment la map est construite</h3>
+  <p>The Cliff est symétrique gauche-droite. L'équipe jaune apparaît sur le côté gauche, l'équipe bleue sur le côté droit. A est en haut au centre, entre deux murs, et c'est le seul point de la carte.</p>
+  <p>Sur chaque hauteur, en haut à gauche et à droite, deux marqueurs à flèches vertes : la hauteur O côté jaune, la hauteur E côté bleu. Devant chaque spawn, une zone carrée : le Labo O côté jaune, le Labo E côté bleu. Au milieu de la carte, un losange marque le centre. Le bas est le tunnel, découpé en murs.</p>
+
+  <h3>Le principe à retenir</h3>
+  <p>A est le seul point : c'est lui qui fait gagner. Le losange central est le passage obligé entre les deux camps, donc le lieu des premiers contacts. Le rôle exact des flèches vertes reste à confirmer en jeu avant de bâtir des tactiques dessus.</p>
+
+  <h3>Composition recommandée</h3>
+  <div class="grid">
+    <div class="role"><h4>Entry</h4><p class="w">GRE</p><p>Ouvre avec son shield par le couloir Bunker, vers A. Prend les duels courts.</p></div>
+    <div class="role b"><h4>Support</h4><p class="w">ADE</p><p>Se place au mur côté Labo O et envoie le sonar sur le mur côté Labo E. Peut venger GRE par le centre.</p></div>
+    <div class="role r"><h4>Appui</h4><p class="w">VIN</p><p>Se place dans le couloir Bunker, juste derrière GRE, couvre au LMG et envoie son sticky vers le couloir Bunker de droite. Venge GRE dès qu'il tombe. Se place derrière GRE au Recap A.</p></div>
+    <div class="role g"><h4>Flex</h4><p class="w">SJ</p><p>Part par le Tunnel et surveille le back. Annonce ce qu'il voit avant que les autres ne le découvrent.</p></div>
+  </div>
+</section>
+
+<section role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+  <h3>Autour de A</h3>
+  <p>A (le Bunker) est logé dans une alcôve, entre deux murs. Le joueur sur le point garde le shield face au tunnel, le support se place sur le côté, hors de son angle, pour que les deux ne soient jamais pris dans le même tir.</p>
+
+  <h3>Le centre</h3>
+  <p>Le losange sépare les deux camps. Tenir ses abords donne la vue sur les approches de A. Ne le traversez jamais seul : un joueur isolé au centre se fait prendre des deux côtés.</p>
+
+  <h3>Callouts proposés</h3>
+  <p class="t">Basés sur la vue de dessus. À adapter aux noms de votre équipe.</p>
+  <div class="table"><table>
+    <thead><tr><th>Callout</th><th>Zone</th></tr></thead>
+    <tbody>
+      <tr><td>Bunker (A)</td><td>Le point, en haut au centre</td></tr>
+      <tr><td>Couloir Bunker</td><td>Les couloirs de chaque côté du Bunker, entre le mur et le point</td></tr>
+      <tr><td>Hauteur O / Hauteur E</td><td>Les hauteurs en haut à gauche et à droite, avec leurs deux flèches vertes</td></tr>
+      <tr><td>Labo O / Labo E</td><td>Zone carrée devant chaque spawn</td></tr>
+      <tr><td>Losange</td><td>Le losange au centre de la carte</td></tr>
+      <tr><td>Tunnel</td><td>Le couloir du bas, sous le losange</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+  <ol class="phases">
+    <li><h4>Starter</h4><p class="t">Du spawn au premier contact</p>
+      <p>Les quatre sortent du spawn gauche ensemble, par trois routes. GRE et VIN prennent le couloir Bunker : GRE devant avec son shield, VIN juste derrière lui, qui envoie son sticky vers le couloir Bunker de droite. ADE se place au mur côté Labo O et envoie le sonar sur le mur côté Labo E. SJ part par le Tunnel pour surveiller le back.</p></li>
+    <li><h4>Premier combat</h4><p class="t">Les 20 à 30 premières secondes</p>
+      <p>Gagnez le premier contact sans courir. GRE ouvre dans le couloir Bunker vers A, VIN juste derrière lui pour le venger. ADE appuie avec le sonar depuis le mur du Labo. SJ tient le Tunnel, surveille le back et annonce ce qu'il voit. Personne ne se lance seul vers A.</p></li>
+    <li><h4>Stabilisation</h4><p class="t">A tenu</p>
+      <p>Une fois A pris, installez-vous en Tenir A : GRE devant le point, ADE à côté de lui, VIN au bord du losange, SJ sur la hauteur. Personne ne quitte sa zone sans l'annoncer.</p></li>
+    <li><h4>Défense sous pression</h4><p class="t">Quand les bleus poussent</p>
+      <p>Annoncez le nombre et la direction dès le premier contact. On reste groupé autour de A : mieux vaut perdre un peu de terrain que se faire prendre un par un.</p></li>
+    <li><h4>Fin de partie</h4><p class="t">Gestion du score</p>
+      <p>Si vous menez, restez à quatre autour de A. Si vous êtes derrière, préparez un Recap A groupé plutôt que des attaques isolées.</p></li>
+  </ol>
+</section>
+
+<section role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+  <h3>Plan standard : tenir A à quatre</h3>
+  <p>Le plan par défaut. Dès le starter, GRE et VIN entrent par le couloir Bunker, ADE se place au mur côté Labo O et SJ part par le Tunnel pour surveiller le back. Une fois le premier contact gagné, les quatre se regroupent autour de A. A est le seul point qui marque : on ne laisse jamais plus d'un joueur loin du centre.</p>
+
+  <h3>Tenir A</h3>
+  <p>GRE reste devant le point avec son shield. ADE se place à côté de lui, hors de son angle, pour le venger et relancer le sonar. VIN couvre depuis le bord du losange. SJ joue depuis la hauteur, avec vue sur les approches.</p>
+
+  <h3>Recap A</h3>
+  <p>Quand les bleus ont repris A, l'équipe réapparaît ensemble et attaque groupée. GRE et VIN prennent le couloir Bunker : GRE devant avec son shield, VIN juste derrière lui, qui envoie son sticky vers le couloir Bunker de droite. ADE, près du Labo O, envoie le sonar vers le centre, au-dessus du losange. SJ part par le Tunnel pour surveiller le back. Quand les quatre sont en place, tout le monde entre en même temps.</p>
+
+  <div class="warn"><strong>Erreur fréquente :</strong> traverser le centre à un ou deux joueurs. Les autres arrivent trop tard, et l'adversaire marque pendant que vous êtes dispersés.</div>
+</section>
+
+<section role="tabpanel" id="p5" aria-labelledby="t5" hidden>
+  <h3>Trades et discipline</h3>
+  <p>Chaque engagement se fait à deux, avec un joueur prêt à trade dans la seconde. GRE n'avance jamais sans ADE ou VIN derrière lui.</p>
+
+  <h3>Les infos à annoncer</h3>
+  <p>SJ, depuis le haut, annonce le nombre d'ennemis et leur direction avec des mots simples : « centre », « tunnel », « hauteur ». Les autres n'ont pas à vérifier deux fois.</p>
+
+  <h3>À mesurer en entraînement</h3>
+  <p>Ces points ne se voient pas sur la carte. Notez-les une fois et intégrez-les dans ce guide.</p>
+  <ul class="check">
+    <li>Rôle exact des flèches vertes des hauteurs (pads, montée, autre)</li>
+    <li>Rôle du losange central</li>
+    <li>Lignes de vue depuis chaque hauteur sur A</li>
+    <li>Temps de trajet spawn vers A</li>
+    <li>Quels murs offrent de vrais couverts autour de A</li>
+  </ul>
+</section>
+
+<footer>
+  Vue de dessus fournie par l'équipe. Plans de jeu et placements : propositions à valider en entraînement.
+</footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on);
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+    t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight')select(tabs[(i+1)%tabs.length]);
+      if(e.key==='ArrowLeft')select(tabs[(i-1+tabs.length)%tabs.length]);
+    });
+  });
+  var P={
+    starter:{anc:[358,119],e1:[336,93],e2:[320,243],flex:[338,426],
+      t:"Starter : GRE et VIN prennent le couloir Bunker : GRE devant avec son shield, VIN juste derrière lui, qui envoie son sticky vers le couloir Bunker de droite. ADE se place au mur côté Labo O et envoie le sonar sur le mur côté Labo E. SJ part par le Tunnel pour surveiller le back."},
+    tenir:{anc:[338,104],e1:[553,49],e2:[371,356],flex:[681,416],
+      t:"Tenir A : GRE devant le point avec son shield. ADE à côté de lui, hors de son angle, pour venger et relancer le sonar. VIN au bord du losange. SJ sur la hauteur, avec vue sur les approches."},
+    recapa:{anc:[355,122],e1:[332,109],e2:[316,341],flex:[220,430],
+      t:"Recap A : l'équipe réapparaît ensemble. GRE et VIN prennent le couloir Bunker : GRE devant avec son shield, VIN juste derrière lui, qui envoie son sticky vers le couloir Bunker de droite. ADE, près du Labo O, envoie le sonar vers le centre, au-dessus du losange. SJ part par le Tunnel pour surveiller le back. Quand les quatre sont en place, tout le monde entre en même temps."}
+  };
+  var toks=document.querySelectorAll('.tok'), txt=document.getElementById('modeTxt');
+  var btns=[].slice.call(document.querySelectorAll('#modes button'));
+  function show(m){
+    var p=P[m];
+    toks.forEach(function(g){var c=p[g.dataset.r];g.style.transform='translate('+c[0]+'px,'+c[1]+'px)';});
+    txt.textContent=p.t;
+    [].forEach.call(document.querySelectorAll('.ov'),function(o){o.style.display=(o.dataset.m===m)?'':'none'});
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===m)});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.m)})});
+  show('starter');
+})();
+</script>
+</body>
+</html>
