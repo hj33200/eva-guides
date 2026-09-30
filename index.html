@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVA – Guides tactiques par map</title>
+<style>
+:root{
+  --bp:#15314d; --bp2:#1c3e60; --line:#3b6488; --ink:#e7eef4; --muted:#a9bfd2;
+  --jaune:#f2b33d; --bleu:#7fc8e8; --alerte:#e8664f; --tp:#3fd68a;
+  --head:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bp);color:var(--ink);font:400 17px/1.6 var(--body);
+  background-image:linear-gradient(var(--bp2) 1px,transparent 1px),linear-gradient(90deg,var(--bp2) 1px,transparent 1px);
+  background-size:32px 32px}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 20px 64px}
+header h1{font:700 clamp(48px,10vw,104px)/.9 var(--head);margin:0;letter-spacing:.02em}
+header p{max-width:62ch;color:var(--muted);margin:14px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 28px;margin:22px 0 0;padding:0;list-style:none;font-family:var(--head);font-size:19px}
+.facts b{color:var(--jaune);font-weight:600}
+h2.sec{font:600 24px/1.1 var(--head);margin:40px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.card{display:flex;flex-direction:column;gap:6px;min-height:170px;padding:16px;text-decoration:none;color:var(--ink);
+  border:1.5px solid var(--line);background:rgba(21,49,77,.9);border-left:3px solid var(--jaune);
+  transition:transform .15s,border-color .15s}
+a.card:hover,a.card:focus-visible{border-color:var(--jaune);transform:translateY(-2px)}
+a.card:focus-visible{outline:2px solid var(--bleu);outline-offset:2px}
+.num{font:600 16px var(--head);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.card h3{font:600 34px/1 var(--head);margin:0}
+.card p{margin:2px 0 0;color:var(--muted);font-size:15px;line-height:1.4}
+.go{margin-top:auto;padding-top:10px;font:600 19px var(--head);color:var(--jaune)}
+.card.off{border-left-color:var(--line);border-style:dashed;opacity:.6}
+.card.off .go{color:var(--muted)}
+footer{margin-top:48px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>EVA After-H</h1>
+  <p>Guides tactiques par map pour l'équipe jaune. Choisis une map pour ouvrir son guide : carte interactive, placements et stratégies.</p>
+  <ul class="facts">
+    <li><b>VIN</b> LMG</li>
+    <li><b>GRE</b> SMG + shield</li>
+    <li><b>ADE</b> AR + sonar</li>
+    <li><b>SJ</b> flex</li>
+  </ul>
+</header>
+
+<h2 class="sec">Maps</h2>
+<main class="grid" id="grid"></main>
+
+<footer>Pour ajouter un guide : dépose son fichier .html dans le dépôt, puis renseigne son nom de fichier dans la liste MAPS en haut du script de cette page.</footer>
+</div>
+
+<script>
+// file: nom du fichier du guide dans le même dossier. Laisser null tant que le guide n'est pas publié.
+var MAPS=[
+  {name:"Reef Point", desc:"1 seul point, portes-ponts et consoles. Combat au sol ou en hauteur.", file:"eva-reef-point-guide.html"},
+  {name:"The Cliff", desc:"1 point (Bunker) en haut, losange central, deux hauteurs.", file:"eva-the-cliff-guide.html"},
+  {name:"Engine",     desc:"Anneaux qui tournent : timing d'entrée sur A et B.",                     file:"eva-engine-guide.html"},
+  {name:"Cérès",      desc:"1 point, couloirs serrés, jeu agressif favorable au SMG.",               file:null},
+  {name:"Artefact",   desc:"",                                                                      file:null},
+  {name:"Polaris",    desc:"",                                                                      file:null}
+];
+
+var grid=document.getElementById('grid');
+MAPS.forEach(function(m,i){
+  var on=!!m.file;
+  var el=document.createElement(on?'a':'div');
+  el.className='card'+(on?'':' off');
+  if(on) el.href=m.file; else el.setAttribute('aria-disabled','true');
+  el.innerHTML=
+    '<span class="num">Map '+(i+1)+'</span>'+
+    '<h3></h3>'+
+    '<p></p>'+
+    '<span class="go">'+(on?'Ouvrir le guide →':'Guide à venir')+'</span>';
+  el.querySelector('h3').textContent=m.name;
+  el.querySelector('p').textContent=m.desc||(on?'':'Le guide arrive bientôt.');
+  grid.appendChild(el);
+});
+</script>
+</body>
+</html>
